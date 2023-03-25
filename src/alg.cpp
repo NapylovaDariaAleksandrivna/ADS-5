@@ -60,7 +60,8 @@ std::string infx2pstfx(std::string inf) {
     }
   }
   while (getPrior(stack.get()) > 1) {
-      output += stack.pop(); //output += " ";
+      output += stack.pop();
+      output += " ";
   }
   std::string out = "";
   for (int i = 0; i < output.length()-1; ++i) {
