@@ -27,6 +27,9 @@ class TStack {
     bool isEmpty()const {
       return top == -1;
     }
+    int isOne()const {
+      return top == 0;
+    }
     bool isFull()const {
       return top == size - 1;
     }
