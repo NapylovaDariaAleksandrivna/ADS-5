@@ -4,21 +4,23 @@
 #include "tstack.h"
 
 int getPrior(char symbol) {
-   switch (symbol) {
-   case '(':
-      return 0;
-   case ')':
-      return 1;
-   case '+':
-      return 2;
-   case '-':
-      return 2;
-   case '*':
-      return 3;
-   case '/':
-      return 3;
-   }
-   return -1;
+  switch (symbol) {
+  case '(':
+    return 0;
+  case ')':
+    return 1;
+  case '+':
+    return 2;
+  case '-':
+    return 2;
+  case '*':
+    return 3;
+  case '/':
+    return 3;
+  case ' ':
+    return -100;
+  }
+  return -1;
 }
 
 std::string infx2pstfx(std::string inf) {
@@ -64,7 +66,41 @@ std::string infx2pstfx(std::string inf) {
   return output;
 }
 
-int eval(std::string pref) {
-  // добавьте код
+int operatoR (int a, int b, char op){
+  switch (op) {
+  case '+':
+    return a+b;
+  case '-':
+    return a-b;
+  case '*':
+    return a*b;
+  case '/':
+    return a/b;
+  }
   return 0;
+}
+int eval(std::string pref) {
+  TStack<int, 100> stack1;
+  int per=0;
+  int prior = 0;
+  for (auto& op:pref) {
+    prior = getPrior (op);
+    if (prior == -100){ //space
+      continue;
+    }
+    if (prior == -1) { //number
+      stack1.push(op-48);
+    }
+    else {
+      int hz=0;
+      while (!(stack1.isEmpty()+hz)){
+          hz+=1;
+      int a = stack1.pop();
+      int b = stack1.pop();
+      per = operatoR (b, a, op);
+      stack1.push(per);
+      }
+    }
+  }
+  return stack1.pop();
 }
