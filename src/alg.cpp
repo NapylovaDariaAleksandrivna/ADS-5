@@ -65,7 +65,6 @@ std::string infx2pstfx(std::string inf) {
   }
   return output;
 }
-
 int operatoR (int a, int b, char op){
   switch (op) {
   case '+':
