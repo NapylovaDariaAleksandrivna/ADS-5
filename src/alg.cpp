@@ -62,7 +62,11 @@ std::string infx2pstfx(std::string inf) {
   while (getPrior(stack.get()) > 1) {
       output += stack.pop(); //output += " ";
   }
-  return output;
+  std::string out = "";
+  for (int i = 0; i < output.length()-1; ++i) {
+    out += output[i];
+  }
+  return out;
 }
 int operatoR(int a, int b, char op) {
   switch (op) {
